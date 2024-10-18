@@ -1,5 +1,6 @@
 import re
 import streamlit as st
+import pyperclip
 
 # Function to extract product lines
 def extract_product_info(order_text):
@@ -21,5 +22,10 @@ if st.button("Extract"):
         result = extract_product_info(order_text)
         st.subheader("Extracted Product Information:")
         st.text(result)
+
+        # Add a "Copy to Clipboard" button
+        if st.button("Copy to Clipboard"):
+            pyperclip.copy(result)  # Copy the extracted text to clipboard
+            st.success("Product information copied to clipboard!")
     else:
         st.warning("Please enter the order text!")
